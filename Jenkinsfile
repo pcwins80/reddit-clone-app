@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ashfaque-9x/a-reddit-clone.git'
+                git branch: 'main', url: 'https://github.com/pcwins80/reddit-clone-app.git'
             }
         }
         stage("Sonarqube Analysis") {
@@ -81,7 +81,7 @@ pipeline {
 	 stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-65-2-187-142.ap-south-1.compute.amazonaws.com:8080/job/Reddit-Clone-CD/buildWithParameters?token=gitops-token'"
+                    sh "curl -v -k --user chuck-cloud:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-65-2-187-142.ap-south-1.compute.amazonaws.com:8080/job/Reddit-Clone-CD/buildWithParameters?token=gitops-token'"
                 }
             }
          }
@@ -93,7 +93,7 @@ pipeline {
                body: "Project: ${env.JOB_NAME}<br/>" +
                    "Build Number: ${env.BUILD_NUMBER}<br/>" +
                    "URL: ${env.BUILD_URL}<br/>",
-               to: 'ashfaque.s510@gmail.com',                              
+               to: 'chukwuemekapeter195@aol.com',                              
                attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
         }
      }
